@@ -32,7 +32,7 @@
 #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(_WIN32)
 #include <libusb.h>
 #else
-#include <libusb-1.0/libusb.h>
+#include "libusb.h"
 #endif
 
 #if defined(__APPLE__) || defined(__FreeBSD__) /* snprintf is not available in pure C mode */

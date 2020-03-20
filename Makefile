@@ -13,7 +13,7 @@ RM		:= rm -rf
 
 CC ?= gcc
 CFLAGS ?= -g -O0
-CFLAGS += -Wall -Wextra -std=c99 -pedantic
+CFLAGS += -Wall -Wextra -std=c99 -pedantic -I$(HOME)/github/libusb/libusb -L$(HOME)/github/libusb/libusb/.libs
 GIT_VERSION := $(shell git describe --abbrev=8 --dirty --always --tags)
 ifeq ($(GIT_VERSION),)
     GIT_VERSION := $(shell cat VERSION)
@@ -21,7 +21,7 @@ endif
 CFLAGS += -DPROGRAM_VERSION=\"$(GIT_VERSION)\"
 
 ifeq ($(UNAME_S),Linux)
-	LDFLAGS += -Wl,-z,relro -lusb-1.0
+	LDFLAGS += -Wl,-z,relro -L$(HOME)/github/libusb/libusb/.libs -lpthread -lusb-1.0 -static
 endif
 
 ifeq ($(UNAME_S),Darwin)
